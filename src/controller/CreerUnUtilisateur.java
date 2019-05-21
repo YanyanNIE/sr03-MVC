@@ -18,22 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 import dao.UserDAOImpl;
 import model.User;
 
-/**
- * Servlet implementation class HelloServlet
- */
 @WebServlet("/CreerUnUtilisateur")
 public class CreerUnUtilisateur extends HttpServlet {
 	private static Hashtable<Integer, User> usersTable= new Hashtable<Integer, User>();
-	 /**
-	 * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-	 * methods.
-	 *
-	 * @param request servlet request
-	 * @param response servlet response
-	 * @throws ServletException if a servlet-specific error occurs
-	 * @throws IOException if an I/O error occurs
-	 * @throws SQLException 
-	 */
+	
 	 protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 		java.util.Date date = new java.util.Date();
 		java.sql.Date cdate = new java.sql.Date(date.getTime());
@@ -74,26 +62,19 @@ public class CreerUnUtilisateur extends HttpServlet {
     	dispatcher.forward(request, response);		
 	 }
 	 
-	 /**
-		 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-		 */
+	 
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			try {
 				processRequest(request, response);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}	 	
 		}
 
-		/**
-		 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-		 */
 		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			try {
 				processRequest(request, response);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

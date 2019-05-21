@@ -8,33 +8,25 @@
 <sql:setDataSource var="allUsers" driver="com.mysql.cj.jdbc.Driver"
      url="jdbc:mysql://localhost/sr02?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false"
      user="sr02"  password="sr02sr02"/>
-<sql:query dataSource="${allUsers}" var="result">select * from users;</sql:query>
+<sql:query dataSource="${allUsers}" var="result">select * from questionnaire;</sql:query>
 
 
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>Email</th>
-				<th>first name</th>
-				<th>last name</th>
-				<th>identity</th>
-				<th>society</th>
-				<th>phone</th>
-				<th>date of creation</th>
+				<th>Sujet</th>
 				<th>stat</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="row" items="${result.rows}">
 			<tr>
-				<td><c:out value="${row.login}"/></td>
-				<td><c:out value="${row.fname}"/></td>
-				<td><c:out value="${row.lname}"/></td>
-				<td><c:out value="${row.ident}"/></td>
-				<td><c:out value="${row.society}"/></td>
-				<td><c:out value="${row.phone}"/></td>
-				<td><c:out value="${row.cdate}"/></td>
+				<td><c:out value="${row.sujet}"/></td>
 				<td><c:out value="${row.stat}"/></td>
+				<td>
+					 <a href="/EvaluationSite/jsp/QnairePage.jsp?qnaire=${row.sujet}" class="btn btn-dark">Edit</a>
+				</td>
 			</tr>
 			</c:forEach>
 		</tbody>

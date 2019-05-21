@@ -2,46 +2,66 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.QuestionnaireDAOImpl;
 import model.Questionnaire;
 
-/**
- * Servlet implementation class CreerUnQuestionnaire
- */
 @WebServlet("/CreerUnQuestionnaire")
 public class CreerUnQuestionnaire extends HttpServlet {
 	
 	 protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-	 throws ServletException, IOException {
-		 
-		
+	 throws ServletException, IOException, SQLException {
+		System.out.println("controller/CreerUnQuestionnaire: Start");
+    	String sujetQnaire = request.getParameter("Questionnaire sujet");
+    	String stat = request.getParameter("Questionnaire stat");
+    	
+    	Questionnaire qnaire = new Questionnaire();
+	    QuestionnaireDAOImpl qnairedao = new QuestionnaireDAOImpl();
+	    
+	    qnaire.setSujet(sujetQnaire);
+	    qnaire.setStatus(stat);
+	    
+    	boolean resSQL = false;
+    	resSQL = qnairedao.add(qnaire);
+    	RequestDispatcher dispatcher = null;
+    	
+    	if(resSQL) {
+    		dispatcher = request.getRequestDispatcher("/jsp/result.jsp");
+    	} else{
+    		dispatcher = request.getRequestDispatcher("/jsp/error.jsp");
+    	}
+    	dispatcher.forward(request, response);
+    	System.out.println("controller/CreerUnQuestionnaire: End");
 		
 	 }
-	 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-
+	 
 	 @Override
 	 protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	 throws ServletException, IOException {
-	 processRequest(request, response);
+		 try {
+			processRequest(request, response);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	 }
 
 	 @Override
 	 protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	 throws ServletException, IOException {
-	 processRequest(request, response);
+		 try {
+			processRequest(request, response);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	 }
-
-@Override
-public String getServletInfo() {
-return "Short description";
-}// </editor-fold>
-
 }

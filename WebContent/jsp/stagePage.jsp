@@ -18,8 +18,8 @@
 
 <h2>
   <small class="text-muted">Bienvenue </small>
-    ${fname}
-    ${lname}
+    ${user.fname}
+    ${user.lname}
     
 </h2>
 <br>

@@ -34,21 +34,17 @@
 </div>
 <!--modal end -->
 
-<!-- modal button start -->
-<ul class="nav flex-column">
-	<li class="nav-item">
-	   	<span class="d-block p-2 bg-dark text-white">
-	   		<button class="btn btn-dark" data-toggle="modal" data-target="#modalNewUser">new users</button>
-	   	</span>		
-	 </li> 
-</ul>
-</br>
-<!-- modal button end -->
 
 <div class="container">
-
+</br>
 <%@ includefile="showAllUsers.jsp"%> 
 
+
+<!-- modal button start -->
+</br>
+<button class="btn btn-dark" data-toggle="modal" data-target="#modalNewUser">Add users</button>
+</br>
+<!-- modal button end -->
 </div>
 
 <%@ includefile="footer.jsp"%>

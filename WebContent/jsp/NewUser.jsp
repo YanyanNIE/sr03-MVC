@@ -31,6 +31,7 @@
       <label for="inputPhone">Phone</label>
       <input type="text" class="form-control" id="phone" name="User phone">
     </div>
+    </div>
     <div class="form-row">
       	<div class="custom-control custom-radio custom-control-inline">
 		  <input type="radio" id="actif" name="User stat" class="custom-control-input" value="actif">
@@ -50,7 +51,7 @@
 		  <label class="custom-control-label" for="intern">intern</label>
 		</div>  
     </div>
-  </div>
+ 
   </br>
 
   <button type="submit" class="btn btn-dark" value="Submit">Sign in</button>

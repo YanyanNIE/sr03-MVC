@@ -42,7 +42,8 @@ public class QuestionnaireDAOImpl implements QuestionnaireDAO {
 	}
 	
 	@Override
-	public boolean add(Questionnaire quesnaire) throws SQLException{
+	public boolean add(Questionnaire qnaire) throws SQLException{
+		System.out.println("dao/Questionnaire: Start");
 		Connection conn = null;
 		PreparedStatement ps = null;
 		String sql = "insert into questionnaire values(?,?)";
@@ -50,10 +51,11 @@ public class QuestionnaireDAOImpl implements QuestionnaireDAO {
 			conn = ConnSQL.getConnection();
 			ps = conn.prepareStatement(sql);
 			
-			ps.setString(1, quesnaire.getSujet());
-			ps.setString(2, quesnaire.getStat());
+			ps.setString(1, qnaire.getSujet());
+			ps.setString(2, qnaire.getStat());
 			
 			ps.executeUpdate();
+			System.out.println("dao/Questionnaire: End");
 			return true;
 		}catch(SQLException e){
           e.printStackTrace();
