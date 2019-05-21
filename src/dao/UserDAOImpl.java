@@ -41,7 +41,7 @@ public class UserDAOImpl implements UserDAO{
 	        }
 		}catch(SQLException e){
           e.printStackTrace();
-             throw new SQLException("Echec:FINDALL");
+             throw new SQLException("Echec:findAll");
         }finally{
         	ConnSQL.close(null,ps,conn);
         }
@@ -99,10 +99,60 @@ public class UserDAOImpl implements UserDAO{
 		
 	}
 	
-//	@Override
-//	public boolean update() throws SQLException{
-//		return true;
-//	}
+	@Override
+	public boolean updateStat(String login, String stat) throws SQLException{
+		System.out.println("dao/UserDAOImpl::updateStat: Start ");
+		Connection conn = null;
+		PreparedStatement ps = null;
+		String sql = "UPDATE users SET stat = ? WHERE login = ?";
+		
+		try {
+			conn = ConnSQL.getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, stat);
+			ps.setString(2, login);
+			ps.executeUpdate();
+			System.out.println("dao/UserDAOImpl::updateStat: End ");
+			return true;
+		}catch(SQLException e){
+          e.printStackTrace();
+             throw new SQLException("Echec: updateStat");
+        }finally{
+        	ConnSQL.close(null,ps,conn);
+        }
+		
+	}
+	
+	@Override
+	public boolean updateProfile(User u) throws SQLException{
+		System.out.println("dao/UserDAOImpl::updateProfile: Start ");
+		Connection conn = null;
+		PreparedStatement ps = null;
+		
+		String sql = "UPDATE users SET pwd=?, fname=?, lname=?, ident=?, society=?, phone=?, stat=? WHERE login=?";
+		
+		try {
+			conn = ConnSQL.getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, u.getPwd());
+			ps.setString(2, u.getFname());
+			ps.setString(3, u.getLname());
+			ps.setString(4, u.getIndentity());
+			ps.setString(5, u.getSociety());
+			ps.setString(6, u.getPhone());
+			ps.setString(7, u.getStat());
+			ps.setString(8, u.getLogin());
+			System.out.println("dao/UserDAOImpl::updateProfile: ps ="+ps);
+			ps.executeUpdate();
+			System.out.println("dao/UserDAOImpl::updateProfile: End ");
+			return true;
+		}catch(SQLException e){
+          e.printStackTrace();
+             throw new SQLException("Echec: updateProfile");
+        }finally{
+        	ConnSQL.close(null,ps,conn);
+        }
+	}
 	
 	@Override
 	public User findByLogin(String login) throws SQLException{
@@ -131,7 +181,7 @@ public class UserDAOImpl implements UserDAO{
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
-			throw new SQLException("Echec:DELETE");
+			throw new SQLException("Echec:findByLogin");
 		}finally{
 			ConnSQL.close(null,pstem,conn);
 		}

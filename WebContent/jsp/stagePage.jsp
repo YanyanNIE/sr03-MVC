@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.io.*,java.util.*,java.sql.*"%>
-<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,31 +18,12 @@
 
 <h2>
   <small class="text-muted">Bienvenue </small>
-    ${user.fname}
-    ${user.lname}
+    ${fname}
+    ${lname}
     
 </h2>
 <br>
-	<div class="row">
-	  <div class="col-sm-6">
-	    <div class="card">
-	      <div class="card-body">
-	        <h5 class="card-title">Gérer des utilisateurs</h5>
-	        <p class="card-text">Vous pouvez les ajouter, les supprimer...</p>
-	        <a href="/EvaluationSite/jsp/GererUsers.jsp" class="btn btn-dark">  Go </a>
-	      </div>
-	    </div>
-	  </div>
-	  <div class="col-sm-6">
-	    <div class="card">
-	      <div class="card-body">
-	        <h5 class="card-title">Gérer des questionnaires</h5>
-	        <p class="card-text">Créer des questionnaire maintenant!</p>
-	        <a href="#" class="btn btn-dark">  Go </a>
-	      </div>
-	    </div>
-	  </div>
-	</div>
+
 </div>
 
 <%@ includefile="footer.jsp"%>

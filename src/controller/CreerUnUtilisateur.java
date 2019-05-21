@@ -41,7 +41,7 @@ public class CreerUnUtilisateur extends HttpServlet {
 		String login = request.getParameter("User login");
     	String pwd = request.getParameter("User password");
     	String fname = request.getParameter("User first name");
-    	String lname = request.getParameter("User familly name");
+    	String lname = request.getParameter("User last name");
     	String identity = request.getParameter("User identity");
     	String society = request.getParameter("User society");
     	String phone = request.getParameter("User phone");

@@ -1,62 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+<web-app 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" 
+id="WebApp_ID" version="4.0">
+
   <display-name>EvaluationSite</display-name>
-  <servlet>
-    <servlet-name>CreerUnUtilisateur</servlet-name>
-    <servlet-class>controller.CreerUnUtilisateur</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>CreerUnUtilisateur</servlet-name>
-    <url-pattern>/EvaluationSite/CreerUnUtilisateur</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>CreerUneReponse</servlet-name>
-    <servlet-class>controller.CreerUneReponse</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>CreerUneReponse</servlet-name>
-    <url-pattern>/EvaluationSite/CreerUneReponse</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>CreerUnSkill</servlet-name>
-    <servlet-class>controller.CreerUnSkill</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>CreerUnSkill</servlet-name>
-    <url-pattern>/EvaluationSite/CreerUnSkill</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>CreerUnQuestion</servlet-name>
-    <servlet-class>controller.CreerUnQuestion</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>CreerUnQuestion</servlet-name>
-    <url-pattern>/EvaluationSite/CreerUnQuestion</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>CreerUnQuestionnaire</servlet-name>
-    <servlet-class>controller.CreerUnQuestionnaire</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>CreerUnQuestionnaire</servlet-name>
-    <url-pattern>/EvaluationSite/CreerUnQuestionnaire</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>GererQuestion</servlet-name>
-    <servlet-class>controller.GererQuestion</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>GererQuestion</servlet-name>
-    <url-pattern>/EvaluationSite/GererQuestion</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>GererQuestionnaire</servlet-name>
-    <servlet-class>controller.GererQuestionnaire</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>GererQuestionnaire</servlet-name>
-    <url-pattern>/EvaluationSite/GererQuestionnaire</url-pattern>
-  </servlet-mapping>
+  <!-- CheckLogin -->
   <servlet>
     <servlet-name>CheckLogin</servlet-name>
     <servlet-class>controller.CheckLogin</servlet-class>
@@ -65,4 +15,88 @@
     <servlet-name>CheckLogin</servlet-name>
     <url-pattern>/EvaluationSite/CheckLogin</url-pattern>
   </servlet-mapping>
+  
+  <!-- CreerUnUtilisateur -->
+  <servlet>
+    <servlet-name>CreerUnUtilisateur</servlet-name>
+    <servlet-class>controller.CreerUnUtilisateur</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreerUnUtilisateur</servlet-name>
+    <url-pattern>/EvaluationSite/CreerUnUtilisateur</url-pattern>
+  </servlet-mapping>
+  
+   <!-- UpdateStat -->
+  <servlet>
+    <servlet-name>UpdateStat</servlet-name>
+    <servlet-class>controller.UpdateStat</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateStat</servlet-name>
+    <url-pattern>/EvaluationSite/UpdateStat</url-pattern>
+  </servlet-mapping>
+  
+  <!-- CreerUneReponse -->
+  <servlet>
+    <servlet-name>CreerUneReponse</servlet-name>
+    <servlet-class>controller.CreerUneReponse</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreerUneReponse</servlet-name>
+    <url-pattern>/EvaluationSite/CreerUneReponse</url-pattern>
+  </servlet-mapping>
+  
+  <!-- CreerUnQuestion  -->
+  <servlet>
+    <servlet-name>CreerUnQuestion</servlet-name>
+    <servlet-class>controller.CreerUnQuestion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreerUnQuestion</servlet-name>
+    <url-pattern>/EvaluationSite/CreerUnQuestion</url-pattern>
+  </servlet-mapping>
+  
+  <!-- CreerUnQuestionnaire -->
+  <servlet>
+    <servlet-name>CreerUnQuestionnaire</servlet-name>
+    <servlet-class>controller.CreerUnQuestionnaire</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreerUnQuestionnaire</servlet-name>
+    <url-pattern>/EvaluationSite/CreerUnQuestionnaire</url-pattern>
+  </servlet-mapping>
+  
+  <!-- GererQuestion  -->
+  <servlet>
+    <servlet-name>GererQuestion</servlet-name>
+    <servlet-class>controller.GererQuestion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GererQuestion</servlet-name>
+    <url-pattern>/EvaluationSite/GererQuestion</url-pattern>
+  </servlet-mapping>
+  
+  <!-- GererQuestionnaire  -->
+  <servlet>
+    <servlet-name>GererQuestionnaire</servlet-name>
+    <servlet-class>controller.GererQuestionnaire</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GererQuestionnaire</servlet-name>
+    <url-pattern>/EvaluationSite/GererQuestionnaire</url-pattern>
+  </servlet-mapping>
+  
+    <!-- LoginOut -->
+  <servlet>
+    <servlet-name>LoginOut</servlet-name>
+    <servlet-class>controller.LoginOut</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginOut</servlet-name>
+    <url-pattern>/EvaluationSite/LoginOut</url-pattern>
+  </servlet-mapping>
+ 
 </web-app>
+
+
+ 

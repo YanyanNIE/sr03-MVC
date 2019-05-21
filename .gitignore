@@ -4,3 +4,6 @@ WebContent/META-INF/
 .settings/*
 .project
 .classpath
+/nbproject/private/
+/nbbuild/
+/dist/
