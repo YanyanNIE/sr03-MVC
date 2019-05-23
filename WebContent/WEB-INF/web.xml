@@ -26,14 +26,24 @@ id="WebApp_ID" version="4.0">
     <url-pattern>/EvaluationSite/CreerUnUtilisateur</url-pattern>
   </servlet-mapping>
   
-   <!-- UpdateStat -->
+   <!-- UpdateUserStat -->
   <servlet>
-    <servlet-name>UpdateStat</servlet-name>
-    <servlet-class>controller.UpdateStat</servlet-class>
+    <servlet-name>UpdateUserStat</servlet-name>
+    <servlet-class>controller.UpdateUserStat</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>UpdateStat</servlet-name>
-    <url-pattern>/EvaluationSite/UpdateStat</url-pattern>
+    <servlet-name>UpdateUserStat</servlet-name>
+    <url-pattern>/EvaluationSite/UpdateUserStat</url-pattern>
+  </servlet-mapping>
+  
+  <!-- UpdateQnaireStat -->
+  <servlet>
+    <servlet-name>UpdateQnaireStat</servlet-name>
+    <servlet-class>controller.UpdateQnaireStat</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateQnaireStat</servlet-name>
+    <url-pattern>/EvaluationSite/UpdateQnaireStat</url-pattern>
   </servlet-mapping>
   
   <!-- CreerUneReponse -->

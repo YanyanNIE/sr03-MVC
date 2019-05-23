@@ -100,12 +100,12 @@ public class QQDAOImpl implements QQDAO{
 		    pstem = conn.prepareStatement(sql);
 		    pstem.setString(1, sujetQnaire);
 			res = pstem.executeQuery();
-			System.out.println("QADAOImpl.getMaxOrder()");
-			if(res.next()){
+			while(res.next()){
 				if(res.getInt("orders")>maxorder) {
 					maxorder = res.getInt("orders");
 				}
 			}
+			return maxorder;
 		}catch(SQLException e){
 			e.printStackTrace();
 			throw new SQLException("Echec:getMaxOrder");
@@ -113,7 +113,5 @@ public class QQDAOImpl implements QQDAO{
 			ConnSQL.close(null,pstem,conn);
 		}
 		
-    	ConnSQL.close(res,pstem,conn);
-		return maxorder;
 	}
 }

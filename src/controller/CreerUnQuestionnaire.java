@@ -36,7 +36,7 @@ public class CreerUnQuestionnaire extends HttpServlet {
     	RequestDispatcher dispatcher = null;
     	
     	if(resSQL) {
-    		dispatcher = request.getRequestDispatcher("/jsp/result.jsp");
+    		dispatcher = request.getRequestDispatcher("/jsp/GererQnaire.jsp");
     	} else{
     		dispatcher = request.getRequestDispatcher("/jsp/error.jsp");
     	}

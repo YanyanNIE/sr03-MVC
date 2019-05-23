@@ -13,12 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import dao.UserDAOImpl;
 import model.User;
 
-@WebServlet("/UpdateStat")
-public class UpdateStat extends HttpServlet {
+@WebServlet("/UpdateUserStat")
+public class UpdateUserStat extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
   
-    public UpdateStat() {
+    public UpdateUserStat() {
         super();
     }
     
@@ -31,7 +31,7 @@ public class UpdateStat extends HttpServlet {
     	UserDAOImpl userdao = new UserDAOImpl();
     	RequestDispatcher dispatcher = null;
     	if(userdao.updateStat(login, stat)) {
-    		dispatcher = request.getRequestDispatcher("/jsp/result.jsp");
+    		dispatcher = request.getRequestDispatcher("/jsp/GererUsers.jsp");
     	}else {
  			System.out.print("\nUser incorrect." );
  			dispatcher = request.getRequestDispatcher("/jsp/error.jsp");

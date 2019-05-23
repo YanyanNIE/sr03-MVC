@@ -39,7 +39,7 @@ public class QA {
 		this.sujetQ = sujetQ;
 	}
 	
-	public void setSujetQnaire(String sujetA) {
+	public void setSujetA(String sujetA) {
 		this.sujetA = sujetA;
 	}
 	

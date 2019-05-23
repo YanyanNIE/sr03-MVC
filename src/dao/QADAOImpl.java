@@ -25,8 +25,8 @@ public class QADAOImpl implements QADAO {
 			
 			ps.setString(1, qa.getSujetQ());
 			ps.setString(2, qa.getSujetA());
-			ps.setInt(3, qa.getOrder());
-			ps.setBoolean(4, qa.getCanswer());
+			ps.setBoolean(3, qa.getCanswer());
+			ps.setInt(4, qa.getOrder());
 			
 			ps.executeUpdate();
 			return true;
@@ -99,17 +99,18 @@ public class QADAOImpl implements QADAO {
 		PreparedStatement pstem = null;
 		ResultSet res = null;
 		try {
-				
 			conn = ConnSQL.getConnection();
 		    pstem = conn.prepareStatement(sql);
 		    pstem.setString(1, sujetQ);
 			res = pstem.executeQuery();
-			System.out.println("QADAOImpl.getMaxOrder()");
-			if(res.next()){
-				if(res.getInt("orders")>maxorder) {
+			
+			while(res.next()){
+				if(res.getInt("orders")> maxorder) {
 					maxorder = res.getInt("orders");
 				}
 			}
+//			System.out.println("dao/QADAOImpl::getMaxOrder(): maxorder"+maxorder);
+			return maxorder;
 		}catch(SQLException e){
 			e.printStackTrace();
 			throw new SQLException("Echec:getMaxOrder");
@@ -117,7 +118,5 @@ public class QADAOImpl implements QADAO {
 			ConnSQL.close(null,pstem,conn);
 		}
 		
-    	ConnSQL.close(res,pstem,conn);
-		return maxorder;
 	}
 }

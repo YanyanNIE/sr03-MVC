@@ -33,23 +33,26 @@
     </div>
     </div>
     <div class="form-row">
-      	<div class="custom-control custom-radio custom-control-inline">
-		  <input type="radio" id="actif" name="User stat" class="custom-control-input" value="actif">
-		  <label class="custom-control-label" for="actif">Actif</label>
-		</div>
-		<div class="custom-control custom-radio custom-control-inline">
-		  <input type="radio" id="inactif" name="User stat" class="custom-control-input" value="inactif">
-		  <label class="custom-control-label" for="inactif">Inactif</label>
-		</div>  
-		
-		<div class="custom-control custom-radio custom-control-inline">
-		  <input type="radio" id="admin" name="User identity" class="custom-control-input" value="admin">
-		  <label class="custom-control-label" for="admin">admin</label>
-		</div>
-		<div class="custom-control custom-radio custom-control-inline">
-		  <input type="radio" id="intern" name="User identity" class="custom-control-input" value="intern">
-		  <label class="custom-control-label" for="intern">intern</label>
-		</div>  
+	    <div class="form-group col-md-6">
+		    <label for="inputStat">Stat</label>
+			    <div class="input-group">
+				  <select class="custom-select" id="inputGroupSelectStat" name="User stat">
+				    <option selected>Choose...</option>
+			    	<option value="inactif">inactif</option>
+				     <option value="actif">actif</option>
+				  </select>
+			  </div>
+		 </div> 
+		<div class="form-group col-md-6">
+		    <label for="inputIdentity">Identity</label>
+			    <div class="input-group">
+				  <select class="custom-select" id="inputGroupSelectIdentity" name="User identity">
+				    <option selected>Choose...</option>
+			    	<option value="admin">admin</option>
+				     <option value="intern">intern</option>
+				  </select>
+			  </div>
+		 </div> 
     </div>
  
   </br>

@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
+<!-- sql start -->
 <sql:setDataSource var="qqa" driver="com.mysql.cj.jdbc.Driver" 
     url="jdbc:mysql://localhost/sr02?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false"
      user="sr02"  password="sr02sr02"/>
@@ -14,93 +15,165 @@
  <sql:param value="${param.qnaire}" />
 </sql:query> 
 
+<!-- sql end -->
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>QnairePage</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 <body>
 
-<%@ includefile="head.jsp"%>
+<!-- header -->
+<%@ includefile="include/header.jsp"%>
 
- <div class="container">
-
-<h3>
-<c:out value = "${param.qnaire}" />
-</h3>
-<!--modal start -->
+<!--modalNewQuestion start -->
 <div class="modal" id="modalNewQuestion">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                Add a new question
+            	<h5 class="modal-title" id="modalNewQuestionLabel">Add a new question</h5>
+		    	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>  
             </div>
 
             <div class="modal-body">
-                <%@ includefile="NewQuestion.jsp"%>
+                <%@ includefile="function/NewQuestion.jsp"%> 
             </div>
-
+            
             <div class="modal-footer">
                 <button class="btn btn-dark" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
-<!--modal end -->
+<!--modalNewQuestion end -->
 
-<!--modal start -->
-<div class="modal" id="modalNewAnswer">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                Add a new answer
-            </div>
 
-            <div class="modal-body">
-                <%@ includefile="NewAnswer.jsp"%>
-            </div>
+<!--modalNewAnswer start -->
+<div class="modal fade" id="modalNewAnswer" tabindex="-1" role="dialog" aria-labelledby="modalNewAnswerLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add a new answer</h5>
+    	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>    
+      </div>
 
-            <div class="modal-footer">
-                <button class="btn btn-dark" data-dismiss="modal">Close</button>
-            </div>
-        </div>
+      <div class="modal-body">    
+               <%-- <%@ includefile="NewAnswer.jsp"%> --%>
+               <form action="/EvaluationSite/CreerUneReponse" method="post">
+				 	<div class="form-row">
+				    	<div class="form-group col-md-6">
+					      <input type="text" class="form-control" id="sujetQn" name="Question sujet"  readonly>
+					    </div>
+				    </div>
+				    <div class="form-row">
+					    <div class="form-group col-md-6">
+					      <label for="inputSujet">Sujet</label>
+					      <input type="text" class="form-control" id="sujetA" name="Answer sujet">
+					    </div>
+				    </div>
+				
+				    <div class="form-row">
+						<div class="form-group col-md-6">
+						    <label for="inputStat">Stat</label>
+							    <div class="input-group">
+								  <select class="custom-select" id="inputGroupSelectStat" name="Answer stat">
+								    <option selected>Choose...</option>
+							    	<option value="inactif">inactif</option>
+								     <option value="actif">actif</option>
+								  </select>
+							  </div>
+						 </div>
+						 <div class="form-group col-md-6">
+						    <label for="inputResult">Result</label>
+							    <div class="input-group">
+								  <select class="custom-select" id="inputGroupSelectResult" name="Answer result">
+								    <option selected>Choose...</option>
+							    	<option value="TRUE">TRUE</option>
+								     <option value="FALSE">FALSE</option>
+								  </select>
+							  </div>
+						 </div>
+				    </div>
+			  <button type="submit" class="btn btn-dark" value="Submit">Add</button>
+			</form>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-dark" data-dismiss="modal">Close</button>
+      </div>
     </div>
+  </div>
 </div>
-<!--modal end -->
+<!--modalNewAnswer end -->
 
-<c:forEach var="rowqq" items="${resultqq.rows}">
-  <div class="card">
-	    <div class="card-body">
-		    <h2><c:out value="${rowqq.orders}"/> : <c:out value="${rowqq.sujetQn}"/></h2>
-			<sql:query dataSource="${qqa}" var="resultqa">
-			 select * from qa where sujetQ =?;
-			 <sql:param value="${rowqq.sujetQn}" />
-			</sql:query> 
-			
-			<c:forEach var="rowqa" items="${resultqa.rows}">
-					<c:out value="${rowqa.orders}"/> :
-					<c:out value="${rowqa.sujetA}"/> #
-					<c:out value="${rowqa.canswer}"/>
-				</br>
-			</c:forEach>
-			</br>
-			<button class="btn btn-dark" data-toggle="modal" data-target="#modalNewAnswer">Add answer</button>
-		</div>
-	</div>
+
+<div class="container">
 	</br>
-</c:forEach>
-<button class="btn btn-dark" data-toggle="modal" data-target="#modalNewQuestion">Add question</button>
+	<center>
+		<h3>
+		<c:out value = "${param.qnaire}" />
+		</h3>
+	</center>
+	</br>
 
-
+	<c:forEach var="rowqq" items="${resultqq.rows}">
+	  <div class="card">
+		    <div class="card-body">
+			    <h2 class="card-title"><c:out value="${rowqq.orders}"/> : <c:out value="${rowqq.sujetQn}"/></h2>
+				<sql:query dataSource="${qqa}" var="resultqa">
+				 select * from qa where sujetQ =?;
+				 <sql:param value="${rowqq.sujetQn}" />
+				</sql:query> 
+				
+				<table class="table">
+					<tbody>
+						<c:forEach var="rowqa" items="${resultqa.rows}">
+						<tr>
+							<th scope="row"><c:out value="${rowqa.orders}"/></th>
+							<td><c:out value="${rowqa.sujetA}"/> </td>
+							<td><c:out value="${rowqa.canswer}"/> </td>
+						</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+				</br>
+			</div>
+			<button class="btn btn-dark" data-toggle="modal" data-target="#modalNewAnswer" data-whatever="${rowqq.sujetQn}">Add answer</button>
+		</div>
+		</br>
+	</c:forEach>
+	
+	<button class="btn btn-dark" data-toggle="modal" data-target="#modalNewQuestion" >Add question</button>
 
 </div>
 
-<%@ includefile="footer.jsp"%>
+<!-- footer -->
+<%@ includefile="include/footer.jsp"%>
+
+<!-- Script start -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script>
+$('#modalNewAnswer').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var recipient = button.data('whatever') // Extract info from data-* attributes
+  var modal = $(this)/* 
+  modal.find('.modal-title').text('Add a new answer ' + recipient) */
+  modal.find('.modal-body input[name="Question sujet"]').val(recipient)
+}) 
+
+</script>
+<!-- Script end -->
 
 </body>
 </html>

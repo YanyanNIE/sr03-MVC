@@ -85,8 +85,29 @@ public class QuestionnaireDAOImpl implements QuestionnaireDAO {
         }
 	}
 	
-//	@Override
-//	public boolean update(String sujet) throws SQLException{}
+	@Override
+	public boolean updateStat(String sujet, String stat) throws SQLException{
+		System.out.println("dao/QuestionnaireDAOImpl::updateStat: Start ");
+		Connection conn = null;
+		PreparedStatement ps = null;
+		String sql = "UPDATE questionnaire SET stat = ? WHERE sujet = ?";
+		
+		try {
+			conn = ConnSQL.getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, stat);
+			ps.setString(2, sujet);
+			ps.executeUpdate();
+			System.out.println("dao/QuestionnaireDAOImpl::updateStat: End ");
+			return true;
+		}catch(SQLException e){
+          e.printStackTrace();
+             throw new SQLException("Echec: updateStat");
+        }finally{
+        	ConnSQL.close(null,ps,conn);
+        }
+	}
+	
 	
 	@Override
 	public Questionnaire findBySujet(String sujet) throws SQLException{
