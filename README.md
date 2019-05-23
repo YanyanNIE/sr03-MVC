@@ -253,3 +253,14 @@ On utilise une compte d’administrateur pour tester: alex.z@gmail.com.
     - Afficher la liste des utilisateurs (avec l'état de compte) mais sans les fonctionnalité recherche, édition, et pagination
 
 ![demonstration- la gestion des users](imgs/dem-gesuser.gif)
+
+
+## P3 - séance de validation au 28/05/2019
+
+- L’évaluation va porter sur les fonctionnalités suivantes:
+	- la création d'un nouveau questionnaire,
+	- modifier un questionnaire,
+	- activer / désactiver un questionnaire,
+	- afficher la liste des questionnaires disponibles(avec l'état de questionnaire) mais sans les fonctionnalité recherche, et pagination.
+	
+![demonstration- la gestion des users](imgs/dem-gesquiz.gif)
