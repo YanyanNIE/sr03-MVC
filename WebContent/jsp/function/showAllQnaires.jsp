@@ -26,9 +26,7 @@
 			<td>
 				<form action="/EvaluationSite/UpdateQnaireStat" method="post">
 				<div class="form-group">
-				    <!-- <label for="statSelect">Example select</label> -->
 				    <input type="hidden" value="${row.sujet}" name="Qnaire sujet"> 
-				    <%-- <input type="text" class="form-control" placeholder="${row.stat}" name="Qnaire stat"> --%>
 				    <div class="input-group">
 					  <select class="custom-select" id="inputGroupSelectStat" name="Qnaire stat">
 					    <option selected>${row.stat}</option>
@@ -44,7 +42,6 @@
 					  </div>
 					</div>
  					</div>
- 					<!-- <button type="submit" class="btn btn-dark" value="Update" >update</button> -->
  					</form>
 			</td>
 			<td>

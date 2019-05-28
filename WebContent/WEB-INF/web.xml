@@ -46,6 +46,26 @@ id="WebApp_ID" version="4.0">
     <url-pattern>/EvaluationSite/UpdateQnaireStat</url-pattern>
   </servlet-mapping>
   
+  <!-- UpdateQuestionStat -->
+  <servlet>
+    <servlet-name>UpdateQuestionStat</servlet-name>
+    <servlet-class>controller.UpdateQuestionStat</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateQuestionStat</servlet-name>
+    <url-pattern>/EvaluationSite/UpdateQuestionStat</url-pattern>
+  </servlet-mapping>
+  
+   <!-- UpdateAnswerStat -->
+  <servlet>
+    <servlet-name>UpdateAnswerStat</servlet-name>
+    <servlet-class>controller.UpdateAnswerStat</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateAnswerStat</servlet-name>
+    <url-pattern>/EvaluationSite/UpdateAnswerStat</url-pattern>
+  </servlet-mapping>
+  
   <!-- CreerUneReponse -->
   <servlet>
     <servlet-name>CreerUneReponse</servlet-name>

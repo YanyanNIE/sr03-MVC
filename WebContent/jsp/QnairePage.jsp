@@ -5,17 +5,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
-<!-- sql start -->
+<!-- SQL get all Questions by Questionnaire sujet -->
 <sql:setDataSource var="qqa" driver="com.mysql.cj.jdbc.Driver" 
     url="jdbc:mysql://localhost/sr02?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false"
      user="sr02"  password="sr02sr02"/>
-
 <sql:query dataSource="${qqa}" var="resultqq">
- select * from qq where sujetQnaire =?;
+select * from qq, question where qq.sujetQnaire =? and qq.sujetQn=question.sujet;
  <sql:param value="${param.qnaire}" />
 </sql:query> 
-
-<!-- sql end -->
 
 
 <!DOCTYPE html>
@@ -66,7 +63,6 @@
       </div>
 
       <div class="modal-body">    
-               <%-- <%@ includefile="NewAnswer.jsp"%> --%>
                <form action="/EvaluationSite/CreerUneReponse" method="post">
 				 	<div class="form-row">
 				    	<div class="form-group col-md-6">
@@ -123,23 +119,80 @@
 		</h3>
 	</center>
 	</br>
-
+	
+<!-- show Questions and Answers -->
 	<c:forEach var="rowqq" items="${resultqq.rows}">
 	  <div class="card">
 		    <div class="card-body">
-			    <h2 class="card-title"><c:out value="${rowqq.orders}"/> : <c:out value="${rowqq.sujetQn}"/></h2>
+		    	<!-- show Quesion and stat -->
+		    	<table class="table">
+					<tbody>
+					<tr>
+					    <td><h2 class="card-title"><c:out value="${rowqq.orders}"/> </h2> </td>
+					    <td> <h2 class="card-title"><c:out value="${rowqq.sujetQn}"/> </h2></td>
+					    <td>
+				    	<form action="/EvaluationSite/UpdateQuestionStat" method="post">
+							<div class="form-group">
+								<input type="hidden" value="${rowqq.sujetQn}" name="Question sujet">
+							    <div class="input-group">
+								  <select class="custom-select" id="inputGroupSelectStat" name="Question stat">
+								    <option selected>${rowqq.stat}</option>
+								    <c:if test="${rowqq.stat == 'actif'}">
+								    	<option value="inactif">inactif</option>
+								    </c:if>
+								    <c:if test="${rowqq.stat == 'inactif'}">
+								     <option value="actif">actif</option>
+							     	</c:if>
+								  </select>
+								  <div class="input-group-append">
+								    <button class="btn btn-outline-secondary" type="submit" value="Update">update</button>
+								  </div>
+								</div>
+		 					</div>
+		 					</form>
+						</td>
+					</tr>
+					</tbody>
+				
+				<!-- SQL get all answers by question -->
 				<sql:query dataSource="${qqa}" var="resultqa">
-				 select * from qa where sujetQ =?;
+				 select * from qa, answer where qa.sujetQ=? and answer.sujet=qa.sujetA;
 				 <sql:param value="${rowqq.sujetQn}" />
 				</sql:query> 
 				
+				<!-- show all Answers and stats -->
 				<table class="table">
 					<tbody>
 						<c:forEach var="rowqa" items="${resultqa.rows}">
+						<sql:query dataSource="${qqa}" var="AnswerStat">
+						 select stat from question where sujet =?;
+						 <sql:param value="${rowqq.sujetQn}" />
+						</sql:query> 
 						<tr>
 							<th scope="row"><c:out value="${rowqa.orders}"/></th>
 							<td><c:out value="${rowqa.sujetA}"/> </td>
 							<td><c:out value="${rowqa.canswer}"/> </td>
+							<td>
+								<form action="/EvaluationSite/UpdateAnswerStat" method="post">
+									<div class="form-group">
+									    <input type="hidden" value="${rowqa.sujetA}" name="Answer sujet"> 
+									    <div class="input-group">
+										  <select class="custom-select" id="inputGroupSelectStat" name="Answer stat">
+										    <option selected>${rowqa.stat}</option>
+										    <c:if test="${rowqa.stat == 'actif'}">
+										    	<option value="inactif">inactif</option>
+										    </c:if>
+										    <c:if test="${rowqa.stat == 'inactif'}">
+										     <option value="actif">actif</option>
+									     	</c:if>
+										  </select>
+										  <div class="input-group-append">
+										    <button class="btn btn-outline-secondary" type="submit" value="Update">update</button>
+										  </div>
+										</div>
+				 					</div>
+			 					</form>
+							</td>
 						</tr>
 						</c:forEach>
 					</tbody>

@@ -80,8 +80,28 @@ public class AnswerDAOImpl implements AnswerDAO{
         }
 	}
 	
-//	@Override
-//	public boolean update(String sujet) throws SQLException{}
+	@Override
+	public boolean updateStat(String sujet,String stat) throws SQLException{
+		System.out.println("dao/AnswerDAOImpl::updateStat: Start ");
+		Connection conn = null;
+		PreparedStatement ps = null;
+		String sql = "UPDATE answer SET stat = ? WHERE sujet = ?";
+		
+		try {
+			conn = ConnSQL.getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, stat);
+			ps.setString(2, sujet);
+			ps.executeUpdate();
+			System.out.println("dao/AnswerDAOImpl::updateStat: End ");
+			return true;
+		}catch(SQLException e){
+          e.printStackTrace();
+             throw new SQLException("Echec: updateStat");
+        }finally{
+        	ConnSQL.close(null,ps,conn);
+        }
+	}
 	
 	@Override
 	public Answer findBySujet(String sujet) throws SQLException{
