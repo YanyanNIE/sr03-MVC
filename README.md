@@ -262,7 +262,7 @@ On utilise une compte d’administrateur pour tester: alex.z@gmail.com.
 	- modifier un questionnaire,
 	- activer / désactiver un questionnaire,
 	- afficher la liste des questionnaires disponibles(avec l'état de questionnaire) mais sans les fonctionnalité recherche, et pagination.
-	
+    
 ![demonstration- la gestion des users](imgs/dem-gesquiz.gif)
 
 
