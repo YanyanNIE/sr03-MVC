@@ -21,6 +21,11 @@
 	    
 	</h2>
 	<br>
+	
+	
+	
+	<%@ includefile="function/showAllQnaires.jsp"%> 
+	<%@ includefile="function/showDoneQnaires.jsp"%> 
 
 </div>
 

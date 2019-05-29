@@ -264,3 +264,16 @@ On utilise une compte d’administrateur pour tester: alex.z@gmail.com.
 	- afficher la liste des questionnaires disponibles(avec l'état de questionnaire) mais sans les fonctionnalité recherche, et pagination.
 	
 ![demonstration- la gestion des users](imgs/dem-gesquiz.gif)
+
+
+## p4 
+
+page de stagiaire
+
+- Étape 1 
+
+show all questions in a single page;
+
+TODO: with pigination
+
+![demonstration- la gestion des users](imgs/dem-doquizpage.gif)

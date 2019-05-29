@@ -61,7 +61,7 @@ public class UserDAOImpl implements UserDAO{
 			ps.setString(2, u.getPwd());
 			ps.setString(3, u.getFname());
 			ps.setString(4, u.getLname());
-			ps.setString(5, u.getIndentity());
+			ps.setString(5, u.getIdentity());
 			ps.setString(6, u.getSociety());
 			ps.setString(7, u.getPhone());
 			ps.setDate(8, u.getCdate());
@@ -137,7 +137,7 @@ public class UserDAOImpl implements UserDAO{
 			ps.setString(1, u.getPwd());
 			ps.setString(2, u.getFname());
 			ps.setString(3, u.getLname());
-			ps.setString(4, u.getIndentity());
+			ps.setString(4, u.getIdentity());
 			ps.setString(5, u.getSociety());
 			ps.setString(6, u.getPhone());
 			ps.setString(7, u.getStat());

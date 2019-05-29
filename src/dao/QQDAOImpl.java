@@ -12,6 +12,8 @@ import model.Question;
 import util.ConnSQL;
 
 public class QQDAOImpl implements QQDAO{
+	private Question ques;
+
 	@SuppressWarnings("null")
 	@Override
 	public List<Question> findAllQuestionBySujetQnaire(String sujetQnaire) throws SQLException{
@@ -20,14 +22,13 @@ public class QQDAOImpl implements QQDAO{
 		ResultSet res = null;
 		Question ques = null;
 		List<Question> Questions= new ArrayList<Question>();
-		String sql = "select * from qq where sujetQnaire = ?"; 
+		String sql = "select * from qq where sujetQnaire=?"; 
 		
 		try {
 			conn = ConnSQL.getConnection();
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, sujetQnaire);
-			res = ps.executeQuery(sql);
-			
+			res = ps.executeQuery();
 			while(res.next()){
 				ques.setSujet(res.getString("sujet"));
 				ques.setStatus(res.getString("stat"));
@@ -41,6 +42,35 @@ public class QQDAOImpl implements QQDAO{
         }	
 		return Questions;
 	}
+	
+	@Override
+	public List<String> findAllQuestionForCourse(String sujetQnaire) throws SQLException{
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet res = null;
+		ques = null;
+		List<String> Questions= new ArrayList<String>();
+		String sql = "select * from qq where sujetQnaire=?"; 
+		
+		try {
+			conn = ConnSQL.getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, sujetQnaire);
+			res = ps.executeQuery();
+			while(res.next()){
+				System.out.println("QQDAO/findAllQuestionForCourse: sujetQn="+res.getString("sujetQn"));
+				Questions.add(res.getString("sujetQn"));
+	        }
+			return Questions;
+		}catch(SQLException e){
+          e.printStackTrace();
+             throw new SQLException("Echec:findAll");
+        }finally{
+        	ConnSQL.close(null,ps,conn);
+        }	
+		
+	}
+	
 	
 	@Override
 	public boolean add(QQ qq) throws SQLException{
@@ -76,7 +106,7 @@ public class QQDAOImpl implements QQDAO{
 			conn = ConnSQL.getConnection();
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, sujetQn);
-			ps.setString(1, sujetQnaire);
+			ps.setString(2, sujetQnaire);
 			ps.executeUpdate();
 			return true;
 		}catch(SQLException e){

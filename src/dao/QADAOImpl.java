@@ -119,4 +119,29 @@ public class QADAOImpl implements QADAO {
 		}
 		
 	}
+	
+	@Override
+	public boolean getCanswer(String sujetA)throws SQLException{
+		boolean canswer = false;
+		String sql = "select * from qa where sujetA = ?";
+		Connection conn = null;
+		PreparedStatement pstem = null;
+		ResultSet res = null;
+		try {
+			conn = ConnSQL.getConnection();
+		    pstem = conn.prepareStatement(sql);
+		    pstem.setString(1, sujetA);
+			res = pstem.executeQuery();
+			
+			while(res.next()){
+				canswer = res.getBoolean("canswer");	
+			}
+			return canswer;
+		}catch(SQLException e){
+			e.printStackTrace();
+			throw new SQLException("Echec:getMaxOrder");
+		}finally{
+			ConnSQL.close(null,pstem,conn);
+		}
+	}
 }

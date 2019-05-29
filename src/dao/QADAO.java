@@ -12,5 +12,6 @@ public interface QADAO {
 //	public boolean changeOrder(String sujetQ, String sujetA) throws SQLException;
 	public  List<Answer> findAllAnswerBySujetQ(String sujetQ) throws SQLException;
 	public Integer getMaxOrder(String sujetQ)throws SQLException ;
+	public boolean getCanswer(String sujetA)throws SQLException ;
 
 }

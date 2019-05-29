@@ -43,7 +43,7 @@ public class CheckLogin extends HttpServlet {
 		}else if(u.getPwd()!=null){
     		if(u.getPwd().equals(pwd)) {
     			request.getSession().setAttribute("user", u);
-    			if(u.getIndentity().equals("admin")) {
+    			if(u.getIdentity().equals("admin")) {
         			dispatcher = request.getRequestDispatcher("/jsp/adminPage.jsp");
         		}else {
         			dispatcher = request.getRequestDispatcher("/jsp/stagePage.jsp");

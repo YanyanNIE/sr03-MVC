@@ -116,6 +116,16 @@ id="WebApp_ID" version="4.0">
     <url-pattern>/EvaluationSite/GererQuestionnaire</url-pattern>
   </servlet-mapping>
   
+  <!-- CheckQuiz  -->
+  <servlet>
+    <servlet-name>CheckQuiz</servlet-name>
+    <servlet-class>controller.CheckQuiz</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CheckQuiz</servlet-name>
+    <url-pattern>/EvaluationSite/CheckQuiz</url-pattern>
+  </servlet-mapping>
+  
     <!-- LoginOut -->
   <servlet>
     <servlet-name>LoginOut</servlet-name>

@@ -48,7 +48,7 @@ public class User {
 	}
 	
 	
-	public String getIndentity() {
+	public String getIdentity() {
 		return identity;
 	}
 	

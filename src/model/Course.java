@@ -9,7 +9,7 @@ public class Course {
 	private Integer score = 0;
 	private Timestamp btime;
 	private Timestamp etime;
-	private Integer duration = 0;
+	private long duration = 0;
 	
 	public Course(){
 		
@@ -48,7 +48,7 @@ public class Course {
 		return etime;
 	}
 	
-	public Integer getDuration() {
+	public long getDuration() {
 		return duration;
 	}
 	
@@ -77,7 +77,7 @@ public class Course {
 		this.etime = etime;
 	}
 	
-	public void setDuration(Integer duration) {
+	public void setDuration(long duration) {
 		this.duration = duration;
 	}
 }

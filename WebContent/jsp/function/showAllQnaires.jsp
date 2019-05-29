@@ -5,12 +5,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
-<sql:setDataSource var="allUsers" driver="com.mysql.cj.jdbc.Driver"
+<sql:setDataSource var="esdb" driver="com.mysql.cj.jdbc.Driver"
      url="jdbc:mysql://localhost/sr02?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false"
      user="sr02"  password="sr02sr02"/>
-<sql:query dataSource="${allUsers}" var="result">select * from questionnaire;</sql:query>
+<sql:query dataSource="${esdb}" var="questionnaire">
+select * from questionnaire;
+</sql:query>
 
 
+<c:if test="${user.identity == 'admin'}">
 <table class="table table-striped">
 	<thead>
 		<tr>
@@ -20,20 +23,20 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach var="row" items="${result.rows}">
+		<c:forEach var="rowQnaire" items="${questionnaire.rows}">
 		<tr>
-			<td><c:out value="${row.sujet}"/></td>
+			<td><c:out value="${rowQnaire.sujet}"/></td>
 			<td>
 				<form action="/EvaluationSite/UpdateQnaireStat" method="post">
 				<div class="form-group">
-				    <input type="hidden" value="${row.sujet}" name="Qnaire sujet"> 
+				    <input type="hidden" value="${rowQnaire.sujet}" name="Qnaire sujet"> 
 				    <div class="input-group">
 					  <select class="custom-select" id="inputGroupSelectStat" name="Qnaire stat">
-					    <option selected>${row.stat}</option>
-					    <c:if test="${row.stat == 'actif'}">
+					    <option selected>${rowQnaire.stat}</option>
+					    <c:if test="${rowQnaire.stat == 'actif'}">
 					    	<option value="inactif">inactif</option>
 					    </c:if>
-					    <c:if test="${row.stat == 'inactif'}">
+					    <c:if test="${rowQnaire.stat == 'inactif'}">
 					     <option value="actif">actif</option>
 				     	</c:if>
 					  </select>
@@ -45,9 +48,36 @@
  					</form>
 			</td>
 			<td>
-				 <a href="/EvaluationSite/jsp/QnairePage.jsp?qnaire=${row.sujet}" class="btn btn-dark">Edit</a>
+				 <a href="/EvaluationSite/jsp/QnairePage.jsp?qnaire=${rowQnaire.sujet}" class="btn btn-dark">Edit</a>
 			</td>
 		</tr>
 		</c:forEach>
 	</tbody>
 </table>
+</c:if>
+
+<!-- Page pour Intern  -->
+<c:if test="${user.identity == 'intern'}">
+<h4>All Questionnaires</h4>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Sujet</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach var="rowQnaire" items="${questionnaire.rows}">
+		<tr>
+			<c:if test="${ rowQnaire.stat == 'actif'}">	
+				<td><c:out value="${rowQnaire.sujet}"/></td>
+				<td><a href="/EvaluationSite/jsp/DoQuiz.jsp?qnaire=${rowQnaire.sujet}" class="btn btn-dark">DoQuiz</a></td>
+			</c:if>
+		</tr>
+		</c:forEach>
+	</tbody>
+</table>
+</c:if>
+
+
+
